@@ -15,6 +15,8 @@ namespace LogTest
             var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "${basedir}/Logs/log_${date:format=yyyy-MM-dd}.log" };
             var errorlogfile = new NLog.Targets.FileTarget("errorlogfile") { FileName = "${basedir}/Logs/err_${date:format=yyyy-MM-dd}.log" };
             var logconsole = new NLog.Targets.ConsoleTarget("logconsole");
+            
+            logconsole.Layout = "${level:uppercase=true}|${message}";
 
             // Rules for mapping loggers to targets            
             config.AddRule(LogLevel.Info, LogLevel.Fatal, logconsole);
